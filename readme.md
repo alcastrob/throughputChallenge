@@ -1,4 +1,6 @@
 # Dotnet core - Python processes benchmark project
+Master branch: ![](https://travis-ci.com/alcastrob/throughputChallenge.svg?branch=master)
+
 This project tries to defeat a benchmark communicating two separare processes: one written in dotnet core 3.1 producing data, and another one, written in python 3.7, consuming these data.
 
 The producer process is generating data items of 1,700 double numbers.
