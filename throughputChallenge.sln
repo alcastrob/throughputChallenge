@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3CF84004-9B69-4014-B70F-705C16C89233}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C0374F78-1C81-4B5D-9F8F-C7186E76EF21}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7CA52386-E9AC-40FA-A135-4B6FF91CED7D}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "containers", "containers", "{B3BE7D8D-E4FB-4254-B407-2FC98E675735}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "producer", "producer\src\producer.csproj", "{583221A9-DEB5-42DE-A833-D4E59C2BC433}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "consumer", "consumer\consumer.pyproj", "{642DF990-54A6-42CD-A5AB-06FB602072EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "producer_tests", "producer\tests\producer_tests.csproj", "{0E084402-B837-4760-A3F1-41B9170B69D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{583221A9-DEB5-42DE-A833-D4E59C2BC433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{583221A9-DEB5-42DE-A833-D4E59C2BC433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{583221A9-DEB5-42DE-A833-D4E59C2BC433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{583221A9-DEB5-42DE-A833-D4E59C2BC433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{642DF990-54A6-42CD-A5AB-06FB602072EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{642DF990-54A6-42CD-A5AB-06FB602072EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E084402-B837-4760-A3F1-41B9170B69D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E084402-B837-4760-A3F1-41B9170B69D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E084402-B837-4760-A3F1-41B9170B69D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E084402-B837-4760-A3F1-41B9170B69D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B3BE7D8D-E4FB-4254-B407-2FC98E675735} = {7CA52386-E9AC-40FA-A135-4B6FF91CED7D}
+		{583221A9-DEB5-42DE-A833-D4E59C2BC433} = {3CF84004-9B69-4014-B70F-705C16C89233}
+		{642DF990-54A6-42CD-A5AB-06FB602072EF} = {3CF84004-9B69-4014-B70F-705C16C89233}
+		{0E084402-B837-4760-A3F1-41B9170B69D1} = {C0374F78-1C81-4B5D-9F8F-C7186E76EF21}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F751341A-6A1B-4770-A0DA-CBEE7D602FE8}
+	EndGlobalSection
+EndGlobal

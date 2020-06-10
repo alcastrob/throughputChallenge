@@ -1,67 +1,44 @@
-# Dotnet core scaffolding project
-Master branch: ![](https://travis-ci.com/alcastrob/dnc1.svg?branch=master)
-Dev branch: ![](https://travis-ci.com/alcastrob/dnc1.svg?branch=dev)
+# Dotnet core - Python processes benchmark project
+This project tries to defeat a benchmark communicating two separare processes: one written in dotnet core 3.1 producing data, and another one, written in python 3.7, consuming these data.
 
-I created this project as template for other developements using dotnet core 3.1. It includes its testing layer, using hexagonal architecture, the docker file for the container, the travisCI configuration for CI and other goodies.
+The producer process is generating data items of 1,700 double numbers.
+The consumer must ingest this information as fast as possible.
 
-## Getting Started
+The record to break is ingest 300K doubles values (or 177 data items)
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Both processes will run on a 8 core server. You can see full details of the instance in this image:
+![Server configuration](/img/server_conf.png)
 
-### Prerequisites
+## Assumptions
 
-What things you need to install the software and how to install them
+1. Both processes are running on the same server on same time
+2. IPC techniques will probably fit best here in terms of performance, but other options could be explored.
 
-```
-Give examples
-```
+## Aproaches
+1. WIP. Branch Master
 
-### Installing
+## Prerequisites
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+You need at least one server machine with docker installed. Due to the local nature of the challenge, no kubernetes was added to the solution, and all the containers are orchestrated via a docker-compose file.
+The different technical approaches will be included in a separate branch of this project. You can swith between approaches using the command git branch. An index of all the solutions expored will be incluced in this documment in the master branch.
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+The main purpose of this project is to explore the best performing interprocesses communication, so the testing, project structure, DI and CI tooling was reduced to its minimun expression.
 
-### Break down into end to end tests
-
-Explain what these tests test and why
+Anyway, a bare set of tests were created and you can execute them using the folloing commands:
 
 ```
-Give an example
+	dotnet restore
+	dotnet build
+	dotnet test ./producer/tests/producer_tests.csproj
 ```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Visual Studio](https://visualstudio.microsoft.com/)
-* [Dotnet Core](https://dotnet.microsoft.com/download/dotnet-core)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/)
+* [Dotnet Core 3.1](https://dotnet.microsoft.com/download/dotnet-core)
+* [Python 3.7](https://www.python.org/downloads/)
 
 ## Versioning
 
@@ -71,14 +48,6 @@ We use [github](https://github.com/) for versioning. For the versions available,
 
 * **Angel Castro** - *Initial work* - [AngelCastro](https://github.com/alcastrob/)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc

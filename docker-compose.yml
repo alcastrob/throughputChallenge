@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  producer:
+    build: ./producer/.
+    container_name: producer
+    depends_on:
+    restart: unless-stopped
+
+  consumer:
+    image: 3.7-alpine
+    container_name: consumer
+    restart: unless-stopped

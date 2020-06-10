@@ -1,5 +1,5 @@
 language: csharp
-solution: dnc1.sln
+solution: throughputChallenge.sln
 mono: none
 dist: xenial
 dotnet: 3.1
@@ -7,7 +7,4 @@ install:
   - dotnet restore
 script:
   - dotnet build
-  - dotnet test ./tests/Application_Tests/Application_Tests.csproj
-  - dotnet test ./tests/Domain_Tests/Domain_Tests.csproj
-  - dotnet test ./tests/Infraestructure_Tests/Infraestructure_Tests.csproj
-  - dotnet test ./tests/WebApi_Tests/WebApi_Tests.csproj
+  - dotnet test ./producer/tests/producer_tests.csproj
