@@ -1,18 +1,39 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Producer
 {
     class Program
     {
-        const int ITEMS = 50 * 1000;
+        const int ITEMS = 1 * 1000;
         const int ITEM_SIZE = 1700;
+
+        /// <summary>
+        /// This method will prepare all required config for the autofac dependency injection system, including
+        /// the mapping of the interfaces and their corresponding types.
+        /// </summary>
+        private static AutofacServiceProvider GetInjector()
+        {
+            var serviceCollection = new ServiceCollection();
+            var containerBuilder = new ContainerBuilder();
+
+            containerBuilder.Populate(serviceCollection);
+            containerBuilder.RegisterType<FileWriter>().As<IFileWriter>();
+            containerBuilder.RegisterType<Executor>().As<IExecutor>();
+            containerBuilder.RegisterType<DataGenerator>().As<IDataGenerator>();
+
+            var container = containerBuilder.Build();
+            return  new AutofacServiceProvider(container);
+        }
 
         static void Main(string[] args)
         {
+            AutofacServiceProvider injector = GetInjector();
+
             Console.WriteLine("Data producer");
-            Executor ex = new Executor();
+            IExecutor ex = injector.GetService<IExecutor>();
             var statistics = ex.Execute(ITEMS, ITEM_SIZE);
             
             Console.WriteLine(string.Format("Total time (ms): {0}", statistics.elapsedTotalTime));

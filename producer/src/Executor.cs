@@ -6,8 +6,20 @@ namespace Producer
     /// <summary>
     /// This class will request the generated data item and pass the to the python consumer
     /// </summary>
-    internal class Executor
+    internal class Executor : IExecutor
     {
+        private readonly string directory = "./data/";
+        private IFileWriter fileWriter;
+        private IDataGenerator dataGenerator;
+
+        public Executor(IDataGenerator dataGenerator, IFileWriter writer)
+        {
+            this.fileWriter = writer;
+            this.dataGenerator = dataGenerator;
+            // Clean up the environment
+            this.fileWriter.InitializeDirectory(directory);
+        }
+
         /// <summary>
         /// The execution method.
         /// </summary>
@@ -21,12 +33,13 @@ namespace Producer
                 throw new ApplicationException("Iterations must be at least one");
             }
 
-            DataGenerator gen = new DataGenerator();
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             for (int counter = 0; counter < iterations; counter++)
             {
-                gen.GenerateData(itemSize);
+                var data = dataGenerator.GenerateData(itemSize);
+                fileWriter.Write(string.Format("{0}.{1:00000000}", directory, counter), data);
+
             }
             stopWatch.Stop();
             return new Statistics

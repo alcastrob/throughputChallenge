@@ -7,7 +7,7 @@ namespace Producer
     /// <summary>
     /// This class will generate the data item, that is an array of double values.
     /// </summary>
-    internal class DataGenerator
+    internal class DataGenerator : IDataGenerator
     {
         /// <summary>
         /// This method will return an array of as many double values as requested in the parameter.
@@ -20,7 +20,7 @@ namespace Producer
             {
                 throw new ApplicationException("The item size must be greater or equal to one");
             }
-            
+
             // No need to set up a seed. The program purpose is to calculate a througput, not to have good random numbers
             var random = new Random();
             var returnedValue = new double[itemSize];

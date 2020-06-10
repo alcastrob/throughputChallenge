@@ -1,4 +1,3 @@
-using NuGet.Frameworks;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using Producer;
@@ -9,16 +8,6 @@ namespace Producer_Tests
     public class DataGenerator_UT
     {
         private readonly int size = 1700;
-
-        [SetUp]
-        public void Setup()
-        {
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-        }
 
         [Test]
         public void GenerateData_HappyPath()
