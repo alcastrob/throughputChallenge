@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -26,5 +28,14 @@ namespace Producer
 		{
 			File.WriteAllBytes(file, data.SelectMany(value => BitConverter.GetBytes(value)).ToArray());
 		}
+
+		public void Write(string file, List<float[]> data)
+        {
+			List<float> returnedValue = new List<float>();
+			data.ForEach(bitmap => {
+				returnedValue.AddRange(bitmap);
+			});
+			Write(file, returnedValue.ToArray());
+        }
 	}
 }
