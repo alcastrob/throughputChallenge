@@ -13,11 +13,19 @@ Both processes will run on a 8 core server. You can see full details of the inst
 
 ## Assumptions
 
-1. Both processes are running on the same server on same time
-2. IPC techniques will probably fit best here in terms of performance, but other options could be explored.
+1. Both processes are running on the same server on same time.
+2. There's enough free disk to write all the data items.
+3. There's enough memory available for all the data items.
+4. IPC techniques will probably fit best here in terms of performance, but other options could be explored.
+5. This is not an [ETL](https://en.wikipedia.org/wiki/Extract,_transform,_load), but a continuous flow of data items coming from the producer to the consumer. Therefore, there's no ALL DATA CONSUMED status.
 
 ## Aproaches
-1. WIP. Branch Master
+The project will cover different approaches. On every branch under [approaches](branches) you can find the implementation and details of every scenario tested. On every branch you can find also a file called approach.md, that contains all the info related with this case.
+
+For your convenience, here you have a list of the approaches explored.
+
+1. [One file per bitmap](blob/approaches/ap1/approach.md). [Branch](tree/approaches/ap1)
+2. [Multiple bitmaps per file](blob/approaches/ap2/approach.md). [Branch](tree/approaches/ap1)
 
 ## Prerequisites
 
