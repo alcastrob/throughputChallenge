@@ -1,7 +1,7 @@
 # Current Approach: Write one file per data item
 
 This is a **really bad idea**. Basically is the producer process writing a file to disk for each data item. The performance here is conditioned by the capacity of the OS to write files. 
-Even counting with SSD disks and async write operations, this operation is extremely expensive in terms of execution time. At least, it could be **usefull to have a performance baseline for comparison**.
+Even counting with SSD disks and async write operations, this operation is expensive in terms of execution time. At least, it could be **usefull to have a performance baseline for comparison**.
 
 Therefore, it's not worthy to build the consumer. The producer times are high enough to not continue with this approach.
 
@@ -17,7 +17,8 @@ Therefore, it's not worthy to build the consumer. The producer times are high en
 
 - There's an important difference writing text files or binary files
 
-|                         | Text File    | Binary File  |
-| ----------------------- | ------------ | ------------ |
-| Avg. time per data item | 32.2 ms      | 22.5 ms      |
-| File size               | 34,500 bytes | 13,600 bytes |
+| Writing times                         | Text File    | Binary File  |
+| ------------------------------------- | ------------ | ------------ |
+| Avg. time per data item               | 0.98942 ms   | 0.53899 ms   |
+| Total time (process 5,295 data items) | 5,239 ms     | 2,854 ms     |
+| File size (per data item)             | 34,500 bytes | 13,600 bytes |

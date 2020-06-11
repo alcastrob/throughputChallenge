@@ -1,7 +1,7 @@
 ﻿namespace Producer
 {
-    internal interface IDataGenerator
-    {
-        double[] GenerateData(int itemSize);
-    }
+  internal interface IDataGenerator
+  {
+    float[] GenerateData(int itemPixels, int pixelSize);
+  }
 }

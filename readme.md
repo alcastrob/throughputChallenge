@@ -3,10 +3,10 @@ Master branch: ![](https://travis-ci.com/alcastrob/throughputChallenge.svg?branc
 
 This project tries to defeat a benchmark communicating two separare processes: one written in dotnet core 3.1 producing data, and another one, written in python 3.7, consuming these data.
 
-The producer process is generating data items of 1,700 double numbers.
+The producer process simulates to generate a bitmap of 1,700 pixels, with a pixel depth of 5 floats (or 160 bits/pixel).
 The consumer must ingest this information as fast as possible.
 
-The record to break is ingest 300K doubles values (or 177 data items)
+The record to break is ingest **265 bitmaps of 1,700 pixels of 160 bits** in 30 seconds, (around 9M doubles values). To reach that level, **the average ingest must be around 9 bitmaps per second**.
 
 Both processes will run on a 8 core server. You can see full details of the instance in this image:
 ![Server configuration](/img/server_conf.png)

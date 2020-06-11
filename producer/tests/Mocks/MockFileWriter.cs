@@ -9,12 +9,12 @@ namespace producer_tests.Mocks
     {
         public void InitializeDirectory(string directory)
         {
-            //throw new NotImplementedException();
+            //Nothing to do here
         }
 
-        public void Write(string file, double[] data)
+        public void Write(string file, float[] data)
         {
-            //throw new NotImplementedException();
+            //Nothing to do here
         }
     }
 }

@@ -1,26 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Producer
 {
-    class FileWriter : IFileWriter
-    {
-        public void InitializeDirectory(string directory)
-        {
-            if (Directory.Exists(directory))
-            {
-                Directory.Delete(directory, true);
-            }
-            Directory.CreateDirectory(directory);
-        }
+	class FileWriter : IFileWriter
+	{
+		public void InitializeDirectory(string directory)
+		{
+			if (Directory.Exists(directory))
+			{
+				DirectoryInfo di = new DirectoryInfo(directory);
 
-        public void Write(string file, double[] data)
-        {
-            //File.WriteAllLines(file, data.Select(data => data.ToString()));
-            File.WriteAllBytes(file, data.SelectMany(value => BitConverter.GetBytes(value)).ToArray());
-        }
-    }
+				foreach (FileInfo file in di.GetFiles())
+				{
+					file.Delete();
+				}
+			} else
+			{
+				Directory.CreateDirectory(directory);
+			}
+		}
+
+		public void Write(string file, float[] data)
+		{
+			File.WriteAllBytes(file, data.SelectMany(value => BitConverter.GetBytes(value)).ToArray());
+		}
+	}
 }
