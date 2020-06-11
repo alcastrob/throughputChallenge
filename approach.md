@@ -15,10 +15,20 @@ Therefore, it's not worthy to build the consumer. The producer times are high en
 
 ## Notes
 
-- There's an important difference writing text files or binary files
+- There's an important difference writing text files or binary files.
 
 | Writing times                         | Text File    | Binary File  |
 | ------------------------------------- | ------------ | ------------ |
-| Avg. time per data item               | 0.98942 ms   | 0.53899 ms   |
+| Avg. time per bitmap                  | 0.98942 ms   | 0.53899 ms   |
 | Total time (process 5,295 data items) | 5,239 ms     | 2,854 ms     |
 | File size (per data item)             | 34,500 bytes | 13,600 bytes |
+
+* The execution time (in binary mode) executing producer and consumer at same time on the same machine has a huge impact on the times:
+
+|                                       | Producer   | Consumer   |
+| ------------------------------------- | ---------- | ---------- |
+| Avg. time per bitmap                  | 3.41945 ms | 3.41756 ms |
+| Total time (process 5,295 data items) | 18,106 ms  | 18.096 ms  |
+
+
+
