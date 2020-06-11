@@ -24,8 +24,8 @@ The project will cover different approaches. On every branch under [approaches](
 
 For your convenience, here you have a list of the approaches explored.
 
-1. [One file per bitmap](blob/approaches/ap1/approach.md). [Branch](tree/approaches/ap1)
-2. [Multiple bitmaps per file](blob/approaches/ap2/approach.md). [Branch](tree/approaches/ap1)
+1. [One file per bitmap](../approaches/ap1/approach.md). [Branch](../../tree/approaches/ap1)
+2. [Multiple bitmaps per file](../approaches/ap2/approach.md). [Branch](../../tree/approaches/ap1)
 
 ## Prerequisites
 
