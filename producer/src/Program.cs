@@ -2,14 +2,25 @@
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using CommandLine;
+using System.Text;
 
 namespace Producer
 {
 	class Program
 	{
-		const int ITEMS = 5295;
-		const int ITEM_PIXELS = 1700;
-		const int PIXEL_SIZE = 4;
+		class Options
+		{
+			[Option('b', "bitmaps", Required = true, HelpText = "Number of bitmaps to generate (i.e. 265)")]
+			public int bitmaps { get; set; }
+			[Option('p', "totalPixels", Required = true, HelpText = "Number of pixels that every bitmap will contain (i.e. 1700)")]
+			public int pixels { get; set; }
+			[Option('d', "pixelDepth", Required = true, HelpText = "Number of float values contained on every pixel (i.e. 5)")]
+			public int depth { get; set; }
+			[Option('s', "saveDirectory", Required = true, HelpText = "The directory where all the bitmaps will be saved (i.e. ./data)")]
+			public string path { get; set; }
+
+		}
 
 		/// <summary>
 		/// This method will prepare all required config for the autofac dependency injection system, including
@@ -35,15 +46,20 @@ namespace Producer
 
 			Console.WriteLine("Data producer");
 			IExecutor ex = injector.GetService<IExecutor>();
-			var statistics = ex.Execute(ITEMS, ITEM_PIXELS, PIXEL_SIZE);
 
-			Console.WriteLine(string.Format("Total time (ms): {0}", statistics.elapsedTotalTime));
-			Console.WriteLine(string.Format("Average time per item (ms): {0}", statistics.elapsedIndividualAverageTime));
-			Console.WriteLine(string.Format("Total doubles generated: {0}", ITEMS * ITEM_PIXELS));
+			Parser.Default.ParseArguments<Options>(args)
+				   .WithParsed<Options>(o =>
+				   {
+					   ex.CleanEnvironment(o.path);
+					   Console.WriteLine(string.Format("Start producing {0} bitmps of {1} pixels of {2} float/depth at {3}",
+						   o.bitmaps, o.pixels, o.depth, o.path));
 
-			Console.WriteLine();
-			Console.WriteLine("Press Enter to quit");
-			Console.ReadLine();
+                       var statistics = ex.Execute(o.bitmaps, o.pixels, o.depth, o.path.Trim());
+
+                       Console.WriteLine(string.Format("Total time (ms): {0}", statistics.elapsedTotalTime));
+                       Console.WriteLine(string.Format("Average time per item (ms): {0}", statistics.elapsedIndividualAverageTime));
+                       Console.WriteLine(string.Format("Total floats generated: {0}", o.bitmaps * o.pixels * o.depth));
+                   });
 		}
 	}
 }

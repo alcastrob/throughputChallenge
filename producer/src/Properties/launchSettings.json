@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "producer": {
+      "commandName": "Project",
+      "commandLineArgs": "-b 1059 -p 1700 -d 5 -s ./data/"
+    }
+  }
+}

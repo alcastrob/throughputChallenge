@@ -8,7 +8,6 @@ namespace Producer
   /// </summary>
   internal class Executor : IExecutor
   {
-    private readonly string directory = "./data/";
     private IFileWriter fileWriter;
     private IDataGenerator dataGenerator;
 
@@ -16,8 +15,11 @@ namespace Producer
     {
       this.fileWriter = writer;
       this.dataGenerator = dataGenerator;
-      // Clean up the environment
-      this.fileWriter.InitializeDirectory(directory);
+    }
+
+    public void CleanEnvironment(string path)
+    {
+      this.fileWriter.InitializeDirectory(path);
     }
 
     /// <summary>
@@ -27,7 +29,7 @@ namespace Producer
     /// <param name="itemPixels">Number of pixels per bitmap</param>
     /// <param name="pixelSize">Number of float values per pixel</param>
     /// <returns>The execution times</returns>
-    public Statistics Execute(int items, int itemPixels, int pixelSize)
+    public Statistics Execute(int items, int itemPixels, int pixelSize, string path)
     {
       if (items < 1)
       {
@@ -39,8 +41,7 @@ namespace Producer
       for (int counter = 0; counter < items; counter++)
       {
         var data = dataGenerator.GenerateData(itemPixels, pixelSize);
-        fileWriter.Write(string.Format("{0}{1:00000000}", directory, counter), data);
-
+        fileWriter.Write(string.Format("{0}{1:00000000}", path, counter), data);
       }
       stopWatch.Stop();
       return new Statistics

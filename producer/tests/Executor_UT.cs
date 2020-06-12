@@ -14,6 +14,7 @@ namespace Producer_Tests
 		private readonly int bitmaps = 10;
 		private readonly int pixels = 1700;
 		private readonly int pixelSize = 5;
+		private readonly string path = ".";
 
 		private AutofacServiceProvider injector;
 
@@ -48,7 +49,7 @@ namespace Producer_Tests
 				//new Executor(injector.GetService injector.GetService<IFileWriter>());
 
 			// Act
-			var actual = ex.Execute(this.bitmaps, this.pixels, this.pixelSize);
+			var actual = ex.Execute(this.bitmaps, this.pixels, this.pixelSize, this.path);
 
 			// Assert
 			Assert.IsInstanceOf<Executor.Statistics>(actual);
@@ -66,7 +67,7 @@ namespace Producer_Tests
 			IExecutor ex = injector.GetService<IExecutor>();
 
 			// Act
-			ActualValueDelegate<object> testDelegate = () => ex.Execute(0, this.pixels, this.pixelSize);
+			ActualValueDelegate<object> testDelegate = () => ex.Execute(0, this.pixels, this.pixelSize, this.path);
 
 			// Assert
 			Assert.That(testDelegate, Throws.TypeOf<ApplicationException>());

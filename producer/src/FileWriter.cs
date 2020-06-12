@@ -8,6 +8,10 @@ namespace Producer
 	{
 		public void InitializeDirectory(string directory)
 		{
+			if (string.IsNullOrEmpty(directory))
+            {
+				throw new ArgumentNullException("directory");
+            }
 			if (Directory.Exists(directory))
 			{
 				DirectoryInfo di = new DirectoryInfo(directory);
@@ -24,7 +28,8 @@ namespace Producer
 
 		public void Write(string file, float[] data)
 		{
-			File.WriteAllBytes(file, data.SelectMany(value => BitConverter.GetBytes(value)).ToArray());
-		}
+            //File.WriteAllLines(file, data.Select(data => data.ToString()));
+            File.WriteAllBytes(file, data.SelectMany(value => BitConverter.GetBytes(value)).ToArray());
+        }
 	}
 }

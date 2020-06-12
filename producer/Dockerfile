@@ -14,4 +14,4 @@ RUN dotnet publish ./producer.csproj -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "producer.dll"]
+ENTRYPOINT ["dotnet", "producer.dll", "-b 1059", "-p 1700", "-d 5", "-s ./data/"]
